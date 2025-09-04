@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 
+// Use require for prettify-html to avoid TypeScript issues
+const prettifyHtml = require('prettify-html');
+
 type Language = "html" | "css" | "javascript" | "json" | "xml";
 
 export default function CodeFormatter() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [language, setLanguage] = useState<Language>("html");
-  const [indentSize, setIndentSize] = useState(2);
+  const indentSize = 2; // Fixed indent size
   const [error, setError] = useState("");
 
   const formatCode = () => {
@@ -44,67 +47,20 @@ export default function CodeFormatter() {
   };
 
   const formatHTML = (html: string, indent: number): string => {
-    const indentStr = " ".repeat(indent);
-    let formatted = "";
-    let level = 0;
-    let inTag = false;
-    let inAttribute = false;
-    let currentLine = "";
-
-    for (let i = 0; i < html.length; i++) {
-      const char = html[i];
-      const nextChar = html[i + 1];
-
-      if (char === '<' && nextChar !== '/') {
-        // Opening tag
-        if (currentLine.trim()) {
-          formatted += currentLine.trim() + "\n";
-          currentLine = "";
-        }
-        formatted += indentStr.repeat(level) + char;
-        inTag = true;
-        level++;
-      } else if (char === '<' && nextChar === '/') {
-        // Closing tag
-        level = Math.max(0, level - 1);
-        if (currentLine.trim()) {
-          formatted += currentLine.trim() + "\n";
-          currentLine = "";
-        }
-        formatted += indentStr.repeat(level) + char;
-        inTag = true;
-      } else if (char === '>') {
-        // End of tag
-        formatted += char;
-        if (nextChar === '\n' || nextChar === ' ') {
-          formatted += "\n";
-        }
-        inTag = false;
-        inAttribute = false;
-      } else if (char === '"' && inTag) {
-        // Toggle attribute state
-        inAttribute = !inAttribute;
-        formatted += char;
-      } else if (char === '\n' || char === '\r') {
-        // Handle line breaks
-        if (!inTag && !inAttribute) {
-          if (currentLine.trim()) {
-            formatted += currentLine.trim() + "\n";
-            currentLine = "";
-          }
-        } else {
-          formatted += char;
-        }
-      } else {
-        formatted += char;
-      }
+    try {
+      // Use prettify-html library for better HTML formatting
+      return prettifyHtml(html, {
+        indent_size: indent,
+        indent_char: ' ',
+        max_char: 0, // No line wrapping
+        preserve_newlines: true,
+        end_with_newline: true,
+        indent_inner_html: true
+      });
+    } catch (err) {
+      // If prettify-html fails, return original HTML
+      return html;
     }
-
-    if (currentLine.trim()) {
-      formatted += currentLine.trim();
-    }
-
-    return formatted;
   };
 
   const formatCSS = (css: string, indent: number): string => {
@@ -240,7 +196,20 @@ export default function CodeFormatter() {
 
       switch (language) {
         case "html":
-          minified = input.replace(/\s+/g, ' ').replace(/>\s+</g, '><').trim();
+          try {
+            // Use prettify-html with minimal formatting for minification
+            minified = prettifyHtml(input, {
+              indent_size: 0,
+              indent_char: '',
+              max_char: 0,
+              preserve_newlines: false,
+              end_with_newline: false,
+              indent_inner_html: false
+            }).replace(/\s+/g, ' ').trim();
+          } catch (err) {
+            // If prettify-html fails, use fallback minification
+            minified = input.replace(/\s+/g, ' ').replace(/>\s+</g, '><').trim();
+          }
           break;
         case "css":
           minified = input.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{}:;,])\s*/g, '$1').trim();
@@ -332,18 +301,7 @@ export default function CodeFormatter() {
           </select>
         </div>
 
-        <div className="flex items-center space-x-2">
-          <span className="text-white font-medium">Indent Size:</span>
-          <select
-            value={indentSize}
-            onChange={(e) => setIndentSize(Number(e.target.value))}
-            className="px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value={2}>2 spaces</option>
-            <option value={4}>4 spaces</option>
-            <option value={8}>8 spaces</option>
-          </select>
-        </div>
+
       </div>
 
       {/* Controls */}
