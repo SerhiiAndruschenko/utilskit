@@ -160,7 +160,7 @@ export default function Base64Converter() {
     
     try {
       const bytes = decodeFile(input);
-      const blob = new Blob([bytes]);
+      const blob = new Blob([bytes as BlobPart]);
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
