@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "UtilsKit - Essential Developer Tools Collection",
     description:
       "A comprehensive collection of essential developer tools including JSON formatters, regex testers, encoders, web generators, and more.",
-    url: "https://utilskit.com",
+    url: "https://utilskit.tech",
     type: "website",
     siteName: "UtilsKit",
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "A comprehensive collection of essential developer tools including JSON formatters, regex testers, encoders, web generators, and more.",
   },
   alternates: {
-    canonical: "https://utilskit.com",
+    canonical: "https://utilskit.tech",
   },
 };
 

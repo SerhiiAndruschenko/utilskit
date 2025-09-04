@@ -30,15 +30,15 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://utilskit.com"),
+  metadataBase: new URL("https://utilskit.tech"),
   alternates: {
-    canonical: "https://utilskit.com",
+    canonical: "https://utilskit.tech",
   },
   openGraph: {
     title: "UtilsKit - Essential Developer Tools Collection",
     description:
       "A comprehensive collection of essential developer tools including JSON formatters, regex testers, encoders, web generators, and more.",
-    url: "https://utilskit.com",
+    url: "https://utilskit.tech",
     siteName: "UtilsKit",
     images: [
       {
