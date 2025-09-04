@@ -12,7 +12,7 @@ export default function JsonSchemaValidatorPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900">
       <div className="max-w-6xl mx-auto p-6 pb-12 space-y-8">
         <div className="text-center space-y-4">
-        <div className="relative">
+          <div className="relative">
             <Link
               href="/"
               className="absolute left-0 top-0  p-3 bg-gray-800/80 hover:bg-gray-700/80 rounded-xl transition-colors duration-200 backdrop-blur-sm border border-gray-700/50"
@@ -31,7 +31,7 @@ export default function JsonSchemaValidatorPage() {
                 />
               </svg>
             </Link>
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl shadow-2xl mb-6 glow">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl shadow-2xl mb-6 glow">
               <svg
                 className="w-10 h-10 text-white"
                 fill="none"
@@ -42,7 +42,7 @@ export default function JsonSchemaValidatorPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
             </div>
@@ -51,7 +51,8 @@ export default function JsonSchemaValidatorPage() {
             JSON Schema Validator
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Validate JSON data against JSON Schema with detailed error reporting and validation results
+            Validate JSON data against JSON Schema with detailed error reporting
+            and validation results
           </p>
         </div>
         <JsonSchemaValidator />

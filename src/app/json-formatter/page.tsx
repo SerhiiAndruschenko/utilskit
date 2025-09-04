@@ -4,7 +4,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "JSON Formatter - UtilsKit",
-  description: "Format and beautify JSON with syntax highlighting and validation",
+  description:
+    "Format and beautify JSON with syntax highlighting and validation",
 };
 
 export default function JsonFormatterPage() {
@@ -12,7 +13,7 @@ export default function JsonFormatterPage() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900">
       <div className="max-w-6xl mx-auto p-6 pb-12 space-y-8">
         <div className="text-center space-y-4">
-        <div className="relative">
+          <div className="relative">
             <Link
               href="/"
               className="absolute left-0 top-0  p-3 bg-gray-800/80 hover:bg-gray-700/80 rounded-xl transition-colors duration-200 backdrop-blur-sm border border-gray-700/50"
@@ -42,7 +43,7 @@ export default function JsonFormatterPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
                 />
               </svg>
             </div>
@@ -51,7 +52,8 @@ export default function JsonFormatterPage() {
             JSON Formatter
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Format and beautify JSON with syntax highlighting, validation, and error checking
+            Format and beautify JSON with syntax highlighting, validation, and
+            error checking
           </p>
         </div>
         <JsonFormatter />
